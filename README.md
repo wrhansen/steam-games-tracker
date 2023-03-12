@@ -38,3 +38,4 @@ Here's an overview of what this repo is for:
 * https://developers.notion.com/reference/patch-page
 * https://developers.notion.com/reference/page-property-values
 * https://www.python-engineer.com/posts/run-python-github-actions/
+* https://stackoverflow.com/a/54200977/823656

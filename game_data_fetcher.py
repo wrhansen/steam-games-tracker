@@ -5,7 +5,7 @@ from typing import List
 
 import requests
 
-from game_data import Achievement, Game, Page
+from data_objects import Achievement, Game, Page
 
 STEAM_API_KEY = os.environ["STEAM_API_KEY"]
 STEAM_ID = os.environ["STEAM_ID"]
@@ -22,7 +22,7 @@ def fetch_steam_games_data() -> List[Game]:
     # Get Games Data
     response = requests.get(
         "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/",
-        params={"key": STEAM_API_KEY, "steamid": STEAM_ID},
+        params={"key": STEAM_API_KEY, "steamid": STEAM_ID, "include_appinfo": 1},
     )
     games_data = response.json()
 
@@ -88,7 +88,7 @@ def get_notion_page_data():
     return page_data
 
 
-def create_notion_pages(games):
+def create_notion_pages(games: List[Game]):
     for game in games:
         response = requests.post(
             "https://api.notion.com/v1/pages",
@@ -127,6 +127,8 @@ def create_notion_pages(games):
                     "Perfect Game": {"checkbox": game.has_perfect_achievements()},
                     "Was Perfect": {"checkbox": False},
                 },
+                "icon": {"type": "external", "external": {"url": game.img_icon_url}},
+                "cover": {"type": "external", "external": {"url": game.header_logo}},
             },
         )
         response_data = response.json()
@@ -167,6 +169,8 @@ def update_notion_pages(pages: List[Page]):
                     "Perfect Game": {"checkbox": page.perfect_game},
                     "Was Perfect": {"checkbox": page.was_perfect},
                 },
+                "icon": {"type": "external", "external": {"url": page.icon}},
+                "cover": {"type": "external", "external": {"url": page.cover}},
             },
         )
         response_data = response.json()
@@ -212,6 +216,8 @@ def sync_notion_library(games: List[Game]):
                 page.perfect_game = False
                 page.was_perfect = True
         if update:
+            page.icon = game.img_icon_url
+            page.cover = game.header_logo
             updates.append(page)
 
     if new:
