@@ -30,6 +30,16 @@ Here's an overview of what this repo is for:
 * Use Github Actions to schedule this as a daily job
 
 
+# End Result
+
+Now my notion "Games" page looks something like this:
+
+![notion image 1](assets/notion-page-1.png)
+![notion image 2](assets/notion-page-2.png)
+
+I'm really happy with it because I have an easily accessible view into the games
+I am playing on my Steam Deck!
+
 # References
 
 * https://developer.valvesoftware.com/wiki/Steam_Web_API#GetNewsForApp_.28v0001.29
