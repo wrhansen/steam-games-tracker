@@ -21,7 +21,7 @@ brain (Notion) and format a database that shows which games have lost their
 
 # Implementation
 
-I am going to shoot for doing the following:
+Here's an overview of what this repo is for:
 
 * Use Steam Web API to get all games played
 * Figure out which games I've played are "perfect games"
@@ -32,3 +32,9 @@ I am going to shoot for doing the following:
 
 # References
 
+* https://developer.valvesoftware.com/wiki/Steam_Web_API#GetNewsForApp_.28v0001.29
+* https://developers.notion.com/docs/create-a-notion-integration
+* https://developers.notion.com/docs/authorization
+* https://developers.notion.com/reference/patch-page
+* https://developers.notion.com/reference/page-property-values
+* https://www.python-engineer.com/posts/run-python-github-actions/
