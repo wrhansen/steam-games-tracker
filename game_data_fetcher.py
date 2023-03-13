@@ -22,7 +22,7 @@ def fetch_steam_games_data() -> List[Game]:
     # Get Games Data
     response = requests.get(
         "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/",
-        params={"key": STEAM_API_KEY, "steamid": STEAM_ID, "include_appinfo": 1},
+        params={"key": STEAM_API_KEY, "steamid": STEAM_ID, "include_appinfo": "1"},
     )
     games_data = response.json()
 
@@ -132,13 +132,16 @@ def create_notion_pages(games: List[Game]):
             },
         )
         response_data = response.json()
+        if response_data.get("object") == "error":
+            logger.error(f"Error creating page. Response: {response_data}")
+
     logger.info(f"created {len(games)} pages")
 
 
 def update_notion_pages(pages: List[Page]):
     for page in pages:
-        response = requests.post(
-            "https://api.notion.com/v1/pages/{page.page_id}",
+        response = requests.patch(
+            f"https://api.notion.com/v1/pages/{page.page_id}",
             headers={
                 "Accept": "application/json",
                 "Notion-Version": NOTION_VERSION,
@@ -174,6 +177,8 @@ def update_notion_pages(pages: List[Page]):
             },
         )
         response_data = response.json()
+        if response_data.get("object") == "error":
+            logger.error(f"Error updating page. Response: {response_data}")
     logger.info(f"updated {len(pages)} pages")
 
 
