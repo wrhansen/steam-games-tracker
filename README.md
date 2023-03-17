@@ -1,3 +1,4 @@
+[![Update Notion with Steam Data](https://github.com/wrhansen/steam-games-tracker/actions/workflows/update.yaml/badge.svg?branch=main&event=schedule)](https://github.com/wrhansen/steam-games-tracker/actions/workflows/update.yaml)
 # Perfect Games
 
 This series of scripts and automation is my attempt at keeping track of all the
