@@ -126,6 +126,7 @@ def create_notion_pages(games: List[Game]):
                     },
                     "Perfect Game": {"checkbox": game.has_perfect_achievements()},
                     "Was Perfect": {"checkbox": False},
+                    "Playtime Duration": {"number": game.playtime_forever},
                 },
                 "icon": {"type": "external", "external": {"url": game.img_icon_url}},
                 "cover": {"type": "external", "external": {"url": game.header_logo}},
@@ -171,6 +172,7 @@ def update_notion_pages(pages: List[Page]):
                     "Last Played": {"date": {"start": page.last_played.isoformat()}},
                     "Perfect Game": {"checkbox": page.perfect_game},
                     "Was Perfect": {"checkbox": page.was_perfect},
+                    "Playtime Duration": {"number": page.playtime},
                 },
                 "icon": {"type": "external", "external": {"url": page.icon}},
                 "cover": {"type": "external", "external": {"url": page.cover}},
@@ -206,6 +208,9 @@ def sync_notion_library(games: List[Game]):
         if page.name != game.name:
             update = True
             page.name = game.name
+        if page.playtime != game.playtime_forever:
+            update = True
+            page.playtime = game.playtime_forever
         if page.last_played.isoformat() != game.rtime_last_played.isoformat():
             update = True
             page.last_played = game.rtime_last_played

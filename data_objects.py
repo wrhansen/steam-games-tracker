@@ -80,6 +80,7 @@ class Page:
     total_achievements: int
     perfect_game: bool
     was_perfect: bool
+    playtime: int = 0
     icon: str = ""
     cover: str = ""
 
@@ -111,4 +112,5 @@ class Page:
             was_perfect=properties["Was Perfect"]["checkbox"],
             icon=icon,
             cover=cover,
+            playtime=properties["Playtime Duration"]["number"],
         )
