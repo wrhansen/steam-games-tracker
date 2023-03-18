@@ -41,6 +41,7 @@ Now my notion "Games" page looks something like this:
 I'm really happy with it because I have an easily accessible view into the games
 I am playing on my Steam Deck!
 
+You can read more about how this works from my blog post here: https://blog.wrhansen.dev/posts/2023/automating-my-second-brain/
 # References
 
 * https://developer.valvesoftware.com/wiki/Steam_Web_API#GetNewsForApp_.28v0001.29
