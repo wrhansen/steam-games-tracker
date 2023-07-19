@@ -1,4 +1,5 @@
 import datetime
+import inspect
 from dataclasses import dataclass, field
 
 import pytz
@@ -31,6 +32,12 @@ class Game:
     has_community_visible_stats: bool = False
     content_descriptorids: list[int] = field(default_factory=list)
     has_leaderboards: bool = False
+
+    @classmethod
+    def from_dict(cls, env):
+        return cls(
+            **{k: v for k, v in env.items() if k in inspect.signature(cls).parameters}
+        )
 
     def __post_init__(self):
         self.rtime_last_played = datetime.datetime.fromtimestamp(

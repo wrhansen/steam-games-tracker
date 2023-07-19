@@ -31,7 +31,7 @@ def fetch_steam_games_data() -> List[Game]:
     games: List[Game] = []
 
     for game_dict in games_data["response"]["games"]:
-        game = Game(**game_dict)
+        game = Game.from_dict(**game_dict)
         games.append(game)
         # Only lookup games that I have played
         if game.playtime_forever > 0:
