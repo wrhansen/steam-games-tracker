@@ -224,7 +224,7 @@ def sync_notion_library(games: List[Game]):
         if page.total_achievements != game.total_achievements():
             update = True
             page.total_achievements = game.total_achievements()
-            if page.perfect_game is True:
+            if page.perfect_game == True:
                 page.perfect_game = False
                 page.was_perfect = True
         if update:
